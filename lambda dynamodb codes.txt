@@ -1,0 +1,76 @@
+POST:
+import json 
+import boto3 
+ 
+database=boto3.resource('dynamodb') 
+table=database.Table('OrganicFoodStoreTable') 
+ 
+def lambda_handler(event,context): 
+    table.put_item(Item=event) 
+    response={ 
+        'statusCode':200, 
+        'body':'created an item successfully' 
+    }
+    return response
+
+
+
+GET:
+import json
+import boto3
+
+database=boto3.resource('dynamodb')
+table=database.Table('OrganicFoodStoreTable')
+
+def lambda_handler(event,context):
+    response=table.get_item(Key=event)
+    return response
+
+
+
+DELETE:
+import json 
+import boto3 
+ 
+database=boto3.resource('dynamodb') 
+table=database.Table('OrganicFoodStoreTable') 
+ 
+def lambda_handler(event,context): 
+    table.delete_item(Key=event) 
+    response={ 
+        'statusCode':200, 
+        'body':'deleted an item successfully' 
+    } 
+    return response
+
+
+PUT:
+import json 
+import boto3 
+ 
+database=boto3.resource('dynamodb') 
+table=database.Table('OrganicFoodStoreTable') 
+ 
+def lambda_handler(event,context): 
+    table.put_item(Item=event) 
+    response={ 
+        'statusCode':200, 
+        'body':'created an item successfully' 
+    }
+    return response
+
+
+UPDATE:
+import json
+import boto3
+
+database=boto3.resource('dynamodb')
+table=database.Table('OrganicFoodStoreTable')
+
+def lambda_handler(event,context):
+    table.update_item(Key=event,UpdateExpression='SET pqtyinkg=:v',ExpressionAttributeValues={':v':}6)
+    response={
+        'statusCode':200,
+        'body':'updated an item successfully'
+    }
+    return response
